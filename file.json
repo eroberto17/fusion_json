@@ -1,0 +1,202 @@
+{
+    "artifacts": [{
+            "sourceId": "54bb5a13-86af-4d8f-a05c-bcb6902dfcbd:infrastructure-services/poc-cicd-apache",
+            "type": "GitHub",
+            "alias": "poc-cicd-apache",
+            "definitionReference": {
+                "artifactSourceDefinitionUrl": {
+                    "id": "https://github.com/infrastructure-services/poc-cicd-apache",
+                    "name": ""
+                },
+                "branch": {
+                    "id": "cicd",
+                    "name": "cicd"
+                },
+                "checkoutNestedSubmodules": {
+                    "id": "True",
+                    "name": "Any nested submodules within"
+                },
+                "checkoutSubmodules": {
+                    "id": "",
+                    "name": ""
+                },
+                "connection": {
+                    "id": "54bb5a13-86af-4d8f-a05c-bcb6902dfcbd",
+                    "name": "Github JUROCA"
+                },
+                "defaultVersionSpecific": {
+                    "id": "",
+                    "name": ""
+                },
+                "defaultVersionType": {
+                    "id": "latestFromBranchType",
+                    "name": "Latest from the default branch"
+                },
+                "definition": {
+                    "id": "infrastructure-services/poc-cicd-apache",
+                    "name": "infrastructure-services/poc-cicd-apache"
+                },
+                "fetchDepth": {
+                    "id": "",
+                    "name": ""
+                },
+                "gitHubRepositoryId": {
+                    "id": "399449528",
+                    "name": "399449528"
+                },
+                "gitLfsSupport": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "isPrimary": true,
+            "isRetained": false
+        }, {
+            "sourceId": "54bb5a13-86af-4d8f-a05c-bcb6902dfcbd:infrastructure-services/manifiestos-juroca",
+            "type": "GitHub",
+            "alias": "poc-cicd-apache-manifiestos-prod",
+            "definitionReference": {
+                "artifactSourceDefinitionUrl": {
+                    "id": "https://github.com/infrastructure-services/manifiestos-juroca",
+                    "name": ""
+                },
+                "branch": {
+                    "id": "apache-prod",
+                    "name": "apache-prod"
+                },
+                "checkoutNestedSubmodules": {
+                    "id": "True",
+                    "name": "Any nested submodules within"
+                },
+                "checkoutSubmodules": {
+                    "id": "",
+                    "name": ""
+                },
+                "connection": {
+                    "id": "54bb5a13-86af-4d8f-a05c-bcb6902dfcbd",
+                    "name": "Github JUROCA"
+                },
+                "defaultVersionSpecific": {
+                    "id": "",
+                    "name": ""
+                },
+                "defaultVersionType": {
+                    "id": "latestFromBranchType",
+                    "name": "Latest from the default branch"
+                },
+                "definition": {
+                    "id": "infrastructure-services/manifiestos-juroca",
+                    "name": "infrastructure-services/manifiestos-juroca"
+                },
+                "fetchDepth": {
+                    "id": "",
+                    "name": ""
+                },
+                "gitHubRepositoryId": {
+                    "id": "399449651",
+                    "name": "399449651"
+                },
+                "gitLfsSupport": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "isRetained": false
+        }, {
+            "sourceId": "54bb5a13-86af-4d8f-a05c-bcb6902dfcbd:infrastructure-services/manifiestos-juroca",
+            "type": "GitHub",
+            "alias": "poc-cicd-apache-manifiestos-qa",
+            "definitionReference": {
+                "artifactSourceDefinitionUrl": {
+                    "id": "https://github.com/infrastructure-services/manifiestos-juroca",
+                    "name": ""
+                },
+                "branch": {
+                    "id": "apache-qa",
+                    "name": "apache-qa"
+                },
+                "checkoutNestedSubmodules": {
+                    "id": "True",
+                    "name": "Any nested submodules within"
+                },
+                "checkoutSubmodules": {
+                    "id": "",
+                    "name": ""
+                },
+                "connection": {
+                    "id": "54bb5a13-86af-4d8f-a05c-bcb6902dfcbd",
+                    "name": "Github JUROCA"
+                },
+                "defaultVersionSpecific": {
+                    "id": "",
+                    "name": ""
+                },
+                "defaultVersionType": {
+                    "id": "latestFromBranchType",
+                    "name": "Latest from the default branch"
+                },
+                "definition": {
+                    "id": "infrastructure-services/manifiestos-juroca",
+                    "name": "infrastructure-services/manifiestos-juroca"
+                },
+                "fetchDepth": {
+                    "id": "",
+                    "name": ""
+                },
+                "gitHubRepositoryId": {
+                    "id": "399449651",
+                    "name": "399449651"
+                },
+                "gitLfsSupport": {
+                    "id": "",
+                    "name": ""
+                }
+            },
+            "isRetained": false
+        }
+    ],
+    "triggers": [{
+            "branchFilters": ["cicd"],
+            "alias": "poc-cicd-apache",
+            "triggerType": 3
+        }, {
+            "branchFilters": [],
+            "alias": "poc-cicd-apache-manifiestos-prod",
+            "triggerType": 3
+        }, {
+            "branchFilters": [],
+            "alias": "poc-cicd-apache-manifiestos-qa",
+            "triggerType": 3
+        }
+    ],
+
+    "releaseNameFormat": "v$(rev:r)",
+    "tags": [],
+    "properties": {
+        "DefinitionCreationSource": {
+            "$type": "System.String",
+            "$value": "ReleaseImport"
+        },
+        "IntegrateBoardsWorkItems": {
+            "$type": "System.String",
+            "$value": "False"
+        },
+        "IntegrateJiraWorkItems": {
+            "$type": "System.String",
+            "$value": "false"
+        }
+    },
+    "id": 7,
+    "name": "apache",
+    "path": "\\",
+    "projectReference": null,
+    "url": "https://vsrm.dev.azure.com/andreani/2072eb28-98e5-4182-aedb-4e317311fe2d/_apis/Release/definitions/7",
+    "_links": {
+        "self": {
+            "href": "https://vsrm.dev.azure.com/andreani/2072eb28-98e5-4182-aedb-4e317311fe2d/_apis/Release/definitions/7"
+        },
+        "web": {
+            "href": "https://dev.azure.com/andreani/2072eb28-98e5-4182-aedb-4e317311fe2d/_release?definitionId=7"
+        }
+    }
+}
