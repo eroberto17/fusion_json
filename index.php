@@ -30,6 +30,9 @@
 	<label>Aplication name</label>
 	<input class="form-control" type="text" name="app_name" id="app_name" placeholder="Aplication name, Example: XXX">
 	<br>
+	<label>ID hash</label>
+	<input class="form-control" type="text" name="id" id="id" placeholder="ID Hash">
+	<br>
 
 	<label>Repository</label>
 	<div class="row">
@@ -58,9 +61,9 @@
 </div>
 
 
-<button class="btn btn-info" id="btn_check" onclick="showHint()">Check Data</button>
-<br>
-<button class="btn btn-success" id="btn_download" onclick="download()" style="visibility:hidden; margin-top:-50px;">Download</button>
+<button class="btn btn-info" id="btn_check" onclick="showHint()" title="Check Json data before Download">Check Data</button>
+
+<button class="btn btn-success" id="btn_download" onclick="download()" title="Download Json file">Download</button>
 
 <br>
 <br>
@@ -87,6 +90,7 @@ function showHint(str) {
 
 	var project_name = document.getElementById("project_name").value;
 	var app_name = document.getElementById("app_name").value;
+	var id = document.getElementById("id").value;
 	var repository = document.getElementById("repository").value;
 	var repository_second = document.getElementById("repository_second").value;
 	var repository_manifiesto = document.getElementById("repository_manifiesto").value;
@@ -103,10 +107,11 @@ function showHint(str) {
       if (this.readyState == 4 && this.status == 200) {
         var text = JSON.parse(this.responseText);
         document.querySelector(".response").textContent = JSON.stringify(text, null, 4);
-        document.getElementById('btn_download').style.visibility = 'visible';
-        document.getElementById('btn_check').style.visibility = 'hidden';
+        //document.getElementById('btn_download').style.visibility = 'visible';
+        //document.getElementById('btn_check').style.visibility = 'hidden';
         document.getElementById("project_name").disabled=true;
 				document.getElementById("app_name").disabled=true;
+				document.getElementById("id").disabled=true;
 				document.getElementById("repository").disabled=true;
 				document.getElementById("repository_second").disabled=true;
 				document.getElementById("repository_manifiesto").disabled=true;
@@ -118,15 +123,16 @@ function showHint(str) {
     var formData = new FormData();
 		formData.append("file", file[0]);
 
-    xmlhttp.open("POST", "check.php?project_name="+project_name+"&app_name="+app_name+"&repository="+repository+"&repository_second="+repository_second+"&repository_manifiesto="+repository_manifiesto+"&repository_manifiesto_second="+repository_manifiesto_second, true);
+    xmlhttp.open("POST", "check.php?project_name="+project_name+"&app_name="+app_name+"&id="+id+"&repository="+repository+"&repository_second="+repository_second+"&repository_manifiesto="+repository_manifiesto+"&repository_manifiesto_second="+repository_manifiesto_second, true);
     xmlhttp.send(formData);
   }
 }
 
 function download(){
-	document.getElementById('btn_download').style.visibility = 'hidden';
+	//document.getElementById('btn_download').style.visibility = 'hidden';
 	var project_name = document.getElementById("project_name").value;
 	var app_name = document.getElementById("app_name").value;
+	var id = document.getElementById("id").value;
 	var repository = document.getElementById("repository").value;
 	var repository_second = document.getElementById("repository_second").value;
 	var repository_manifiesto = document.getElementById("repository_manifiesto").value;
@@ -150,7 +156,7 @@ function download(){
     var formData = new FormData();
 		formData.append("file", file[0]);
 
-    xmlhttp.open("POST", "process.php?project_name="+project_name+"&app_name="+app_name+"&repository="+repository+"&repository_second="+repository_second+"&repository_manifiesto="+repository_manifiesto+"&repository_manifiesto_second="+repository_manifiesto_second, true);
+    xmlhttp.open("POST", "process.php?project_name="+project_name+"&app_name="+app_name+"&id="+id+"&repository="+repository+"&repository_second="+repository_second+"&repository_manifiesto="+repository_manifiesto+"&repository_manifiesto_second="+repository_manifiesto_second, true);
     xmlhttp.send(formData);
   }
 }
