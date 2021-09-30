@@ -1,6 +1,7 @@
 <?php
 $project_name = $_REQUEST["project_name"];
 $app_name = $_REQUEST["app_name"];
+$id = $_REQUEST["id"];
 $repository = $_REQUEST["repository"];
 $repository_second = $_REQUEST["repository_second"];
 $repository_manifiesto = $_REQUEST["repository_manifiesto"];
@@ -12,6 +13,9 @@ if(!isset($project_name)) {
 }
 if(!isset($app_name)) {
     $app_name = '';
+}
+if(!isset($id)) {
+    $id = '';
 }
 if(!isset($repository)) {
     $repository = '';
@@ -52,20 +56,46 @@ if (isset($data['artifacts'][0]['sourceId'])) {
         $repository = $text_second_part[0];
     }
 
+    $id_original = $text[0];
+    if($id != NULL) {
+        $text[0] = $id;
+    }
+    else{
+        $id = $text[0];
+    }
+
     $app_name_text = explode("-", $text_second_part[1]);
 
-    $jsonReplace = str_replace(array($repository_original,$text_second_part[1], $app_name_text[2]),array($text_second_part[0], $alias, $app_name),$jsonString);
+    $jsonReplace = str_replace(array($repository_original,$text_second_part[1],$app_name_text[2],$id_original),array($text_second_part[0],$alias,$app_name,$id),$jsonString);
 
     $data = json_decode($jsonReplace, true);
 
     //definitionReference
     if($repository_second != NULL) {
         $data['artifacts'][0]['definitionReference']['artifactSourceDefinitionUrl']['id'] = 'https://github.com/'.$text_second_part[0].'/'.$repository_second;
+
+        $data['artifacts'][0]['sourceId'] = $id.':'.$text_second_part[0].'/'.$repository_second;
+
+        $data['artifacts'][0]['definitionReference']['definition']['id'] = $text_second_part[0].'/'.$repository_second;
+        $data['artifacts'][0]['definitionReference']['definition']['name'] = $text_second_part[0].'/'.$repository_second;
+
     }
     if($repository_manifiesto != NULL) {
         $data['artifacts'][1]['definitionReference']['artifactSourceDefinitionUrl']['id'] = 'https://github.com/'.$repository_manifiesto.'/'.$repository_manifiesto_second;
         $data['artifacts'][2]['definitionReference']['artifactSourceDefinitionUrl']['id'] = 'https://github.com/'.$repository_manifiesto.'/'.$repository_manifiesto_second;
+
+        $data['artifacts'][1]['sourceId'] = $id.':'.$repository_manifiesto.'/'.$repository_manifiesto_second;
+        $data['artifacts'][2]['sourceId'] = $id.':'.$repository_manifiesto.'/'.$repository_manifiesto_second;
+
+        $data['artifacts'][1]['definitionReference']['definition']['id'] = $repository_manifiesto.'/'.$repository_manifiesto_second;
+        $data['artifacts'][1]['definitionReference']['definition']['name'] = $repository_manifiesto.'/'.$repository_manifiesto_second;
+        $data['artifacts'][2]['definitionReference']['definition']['id'] = $repository_manifiesto.'/'.$repository_manifiesto_second;
+        $data['artifacts'][2]['definitionReference']['definition']['name'] = $repository_manifiesto.'/'.$repository_manifiesto_second;
     }
+
+    $data['artifacts'][0]['definitionReference']['connection']['name'] = "Github-AzureDev-".$project_name;
+    $data['artifacts'][1]['definitionReference']['connection']['name'] = "Github-AzureDev-".$project_name;
+    $data['artifacts'][2]['definitionReference']['connection']['name'] = "Github-AzureDev-".$project_name;
 
 /*
 //Replace Harcodeado//

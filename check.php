@@ -1,6 +1,7 @@
 <?php
 $project_name = $_REQUEST["project_name"];
 $app_name = $_REQUEST["app_name"];
+$id = $_REQUEST["id"];
 $repository = $_REQUEST["repository"];
 $repository_second = $_REQUEST["repository_second"];
 $repository_manifiesto = $_REQUEST["repository_manifiesto"];
@@ -11,6 +12,9 @@ if(!isset($project_name)) {
 }
 if(!isset($app_name)) {
     $app_name = '';
+}
+if(!isset($id)) {
+    $id = '';
 }
 if(!isset($repository)) {
     $repository = '';
@@ -28,6 +32,10 @@ if(!isset($repository_manifiesto_second)) {
 $file = 'Emtpy data: Utiliza el JSON de base';
 
 $alias = $project_name.'-'.$app_name;
+
+if($id == NULL){
+    $id = 'Emtpy data: Conserva Hash ID original';
+}
 
 if($repository == NULL){
     $rep = 'Emtpy data: Conserva repositorio original';
@@ -51,6 +59,7 @@ $arr=[
     "project_name" => $project_name,
     "app_name" => $app_name,
     "alias" => $alias,
+    "id" => $id,
     "repository" => $rep,
     "repository_manifiesto" => $rep_man,
     "json_file" => $file,
